@@ -13,6 +13,8 @@ namespace Test.Classes
 {
     public class AccountUtils
     {
+        public static int procents_upload;
+        
         public static async Task<string[]> PrenesiDatotekoNaServer(string path, string uporabnik, bool profilnaSlika = false) {
             try {
                 Stopwatch sw = new Stopwatch();
