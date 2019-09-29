@@ -6,53 +6,17 @@ namespace QuickFix.Classes
 {
     public class TextUtils
     {
-        public static bool TextContainsOnlyLatters(string text) {
-            if (text.All(Char.IsLetter)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+        public static bool TextContainsOnlyLatters(string text) => text.All(Char.IsLetter) ? true : false;
 
-        public static bool TextContainsNumbersLatters(string text) {
-            if (text.All(Char.IsLetterOrDigit)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+        public static bool TextContainsNumbersLatters(string text) => text.All(Char.IsLetterOrDigit) ? true : false;
 
-        public static bool TextContainsOnlyNumbers(string text) {
-            if (text.All(Char.IsDigit)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+        public static bool TextContainsOnlyNumbers(string text) => text.All(Char.IsDigit) ? true : false;
 
-        public static bool TextContainsSymbols(string text) {
-            if (text.All(Char.IsSymbol)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+        public static bool TextContainsSymbols(string text) => text.All(Char.IsSymbol) ? true : false;
 
-        public static bool TextContainsSpaces(string text) {
-            if (text.All(Char.IsWhiteSpace)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+        public static bool TextContainsSpaces(string text) => text.All(Char.IsWhiteSpace) ? true : false;
 
-        public static bool ListContainsString(List<string> list, string text) {
-            if (list.Where(CheckString => CheckString.Contains(text)) != null) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+        public static bool ListContainsString(List<string> list, string text) => list.Where(CheckString => CheckString.Contains(text)) != null ? true : false;
 
         public static List<string> ListAddStringsToList(List<string> list, string[] strings) {
             for (int i = 0; i < strings.Length; i++) {
@@ -70,7 +34,7 @@ namespace QuickFix.Classes
 
         private static Random random = new Random();
         public static string RandomChars(int dolzina) {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // %@#()$?*_[]+-
             return new string(Enumerable.Repeat(chars, dolzina)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
@@ -80,6 +44,5 @@ namespace QuickFix.Classes
             return new string(Enumerable.Repeat(chars, dolzina)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-
     }
 }
