@@ -1,2 +1,0 @@
-# Use MainForm.cs as a main form
-# FormBase form and Native class are used as a reference to the MainForm.cs for animations
