@@ -8,7 +8,6 @@ namespace FormEffects
 {
     public class ModernForm : Form
     {
-        
         public void DecorationMouseDown(HitTestValues hit, Point p) {
             NativeMethods.ReleaseCapture();
             var pt = new POINTS { X = (short)p.X, Y = (short)p.Y };
