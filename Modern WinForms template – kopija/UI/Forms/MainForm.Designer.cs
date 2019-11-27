@@ -44,6 +44,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.bunifuImageButton2 = new Bunifu.Framework.UI.BunifuImageButton();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.TopBorderPanel.SuspendLayout();
             this.BottomBorderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton1)).BeginInit();
@@ -55,14 +56,14 @@
             // 
             // TopBorderPanel
             // 
-            this.TopBorderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(33)))));
+            this.TopBorderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.TopBorderPanel.Controls.Add(this.panel17);
             this.TopBorderPanel.Controls.Add(this.panel16);
             this.TopBorderPanel.Cursor = System.Windows.Forms.Cursors.SizeNS;
             this.TopBorderPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopBorderPanel.Location = new System.Drawing.Point(0, 0);
             this.TopBorderPanel.Name = "TopBorderPanel";
-            this.TopBorderPanel.Size = new System.Drawing.Size(961, 1);
+            this.TopBorderPanel.Size = new System.Drawing.Size(1048, 1);
             this.TopBorderPanel.TabIndex = 2;
             // 
             // panel17
@@ -78,21 +79,21 @@
             // 
             this.panel16.Cursor = System.Windows.Forms.Cursors.SizeNESW;
             this.panel16.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel16.Location = new System.Drawing.Point(956, 0);
+            this.panel16.Location = new System.Drawing.Point(1043, 0);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(5, 1);
             this.panel16.TabIndex = 20;
             // 
             // BottomBorderPanel
             // 
-            this.BottomBorderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(33)))));
+            this.BottomBorderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.BottomBorderPanel.Controls.Add(this.panel15);
             this.BottomBorderPanel.Controls.Add(this.panel12);
             this.BottomBorderPanel.Cursor = System.Windows.Forms.Cursors.SizeNS;
             this.BottomBorderPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomBorderPanel.Location = new System.Drawing.Point(0, 530);
+            this.BottomBorderPanel.Location = new System.Drawing.Point(0, 591);
             this.BottomBorderPanel.Name = "BottomBorderPanel";
-            this.BottomBorderPanel.Size = new System.Drawing.Size(961, 12);
+            this.BottomBorderPanel.Size = new System.Drawing.Size(1048, 12);
             this.BottomBorderPanel.TabIndex = 3;
             // 
             // panel15
@@ -108,29 +109,29 @@
             // 
             this.panel12.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.panel12.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel12.Location = new System.Drawing.Point(949, 0);
+            this.panel12.Location = new System.Drawing.Point(1036, 0);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(12, 12);
             this.panel12.TabIndex = 19;
             // 
             // LeftBorderPanel
             // 
-            this.LeftBorderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(33)))));
+            this.LeftBorderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.LeftBorderPanel.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.LeftBorderPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftBorderPanel.Location = new System.Drawing.Point(0, 1);
             this.LeftBorderPanel.Name = "LeftBorderPanel";
-            this.LeftBorderPanel.Size = new System.Drawing.Size(1, 529);
+            this.LeftBorderPanel.Size = new System.Drawing.Size(1, 590);
             this.LeftBorderPanel.TabIndex = 4;
             // 
             // RightBorderPanel
             // 
-            this.RightBorderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(33)))));
+            this.RightBorderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.RightBorderPanel.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.RightBorderPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RightBorderPanel.Location = new System.Drawing.Point(960, 1);
+            this.RightBorderPanel.Location = new System.Drawing.Point(1047, 1);
             this.RightBorderPanel.Name = "RightBorderPanel";
-            this.RightBorderPanel.Size = new System.Drawing.Size(1, 529);
+            this.RightBorderPanel.Size = new System.Drawing.Size(1, 590);
             this.RightBorderPanel.TabIndex = 5;
             // 
             // bunifuImageButton1
@@ -151,7 +152,7 @@
             this.bunifuImageButton1.Zoom = 0;
             this.bunifuImageButton1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.bunifuImageButton1_MouseClick);
             this.bunifuImageButton1.MouseLeave += new System.EventHandler(this.bunifuImageButton1_MouseLeave);
-            this.bunifuImageButton1.MouseHover += new System.EventHandler(this.bunifuImageButton1_MouseHover);
+            this.bunifuImageButton1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.bunifuImageButton1_MouseMove);
             // 
             // panel1
             // 
@@ -161,7 +162,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(959, 25);
+            this.panel1.Size = new System.Drawing.Size(1046, 25);
             this.panel1.TabIndex = 12;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
@@ -169,7 +170,7 @@
             // 
             this.panel3.Controls.Add(this.bunifuImageButton1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(853, 0);
+            this.panel3.Location = new System.Drawing.Point(940, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(106, 25);
             this.panel3.TabIndex = 16;
@@ -203,12 +204,22 @@
             this.bunifuImageButton2.Zoom = 0;
             this.bunifuImageButton2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bunifuImageButton2_MouseDown);
             // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(59)))));
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(1, 26);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1046, 565);
+            this.panel4.TabIndex = 13;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(59)))));
-            this.ClientSize = new System.Drawing.Size(961, 542);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ClientSize = new System.Drawing.Size(1048, 603);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RightBorderPanel);
             this.Controls.Add(this.LeftBorderPanel);
@@ -252,6 +263,7 @@
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Panel panel4;
     }
 }
 

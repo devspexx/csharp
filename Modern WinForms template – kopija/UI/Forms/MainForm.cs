@@ -2,14 +2,12 @@
 using ShadowDemo;
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace BorderlessForm
 {
     public partial class MainForm : ModernForm
-    // Temp. change "ModernForm" to "Form" to load the designer. Not sure what's the prob.
+    // Temp. change "ModernForm" to "Form" to load the designer.
     {
         private FormWindowState previousWindowState;
         public bool loaded = false;
@@ -23,24 +21,21 @@ namespace BorderlessForm
             panel16.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTTOPRIGHT);
             panel15.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTBOTTOMLEFT);
             panel12.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTBOTTOMRIGHT);
-
             TopBorderPanel.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTTOP);
             LeftBorderPanel.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTLEFT);
             RightBorderPanel.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTRIGHT);
             BottomBorderPanel.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTBOTTOM);
-
+            
             panel1.MouseDown += TitleLabel_MouseDown;
             bunifuImageButton2.MouseDown += TitleLabel_MouseDown;
             panel3.MouseDown += TitleLabel_MouseDown;
             panel2.MouseDown += TitleLabel_MouseDown;
-
             this.Shown += new EventHandler(MainForm_Shown);
             this.Resize += new EventHandler(MainForm_Resize);
             this.LocationChanged += new EventHandler(MainForm_Resize);
 
             previousWindowState = MinMaxState;
             SizeChanged += MainForm_SizeChanged;
-
             loaded = true;
         }
 
@@ -84,17 +79,13 @@ namespace BorderlessForm
             if (e.Button == MouseButtons.Left) {
                 var clickTime = (DateTime.Now - titleClickTime).TotalMilliseconds;
                 if (clickTime < SystemInformation.DoubleClickTime && e.Location == titleClickPosition) {
-                    //ToggleMaximize();
+                    ToggleMaximize();
                 } else {
                     titleClickTime = DateTime.Now;
                     titleClickPosition = e.Location;
                     DecorationMouseDown(HitTestValues.HTCAPTION);
                 }
             }
-        }
-
-        private void bunifuImageButton1_MouseHover(object sender, EventArgs e) {
-            bunifuImageButton1.BackColor = Color.FromArgb(240, 71, 71);
         }
 
         private void bunifuImageButton1_MouseClick(object sender, MouseEventArgs e) {
@@ -104,7 +95,7 @@ namespace BorderlessForm
         }
 
         private void bunifuImageButton1_MouseLeave(object sender, EventArgs e) {
-            bunifuImageButton1.BackColor = Color.FromArgb(32, 34, 37);
+            bunifuImageButton1.BackColor = Color.FromArgb(28, 28, 28);
         }
 
         private void bunifuImageButton2_MouseDown(object sender, MouseEventArgs e) {
@@ -135,6 +126,10 @@ namespace BorderlessForm
             if (loaded) {
                 shadow.RefreshShadow();
             }
+        }
+
+        private void bunifuImageButton1_MouseMove(object sender, MouseEventArgs e) {
+            bunifuImageButton1.BackColor = Color.FromArgb(240, 71, 71);
         }
 
         private void MainForm_Shown(object sender, EventArgs e) { }

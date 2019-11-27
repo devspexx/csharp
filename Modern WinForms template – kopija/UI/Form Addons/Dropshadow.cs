@@ -255,6 +255,20 @@ namespace ShadowDemo
                 Win32.DeleteDC(memDc);
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // Dropshadow
+            // 
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(59)))));
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.DoubleBuffered = true;
+            this.Name = "Dropshadow";
+            this.ResumeLayout(false);
+
+        }
     }
 
     // class that exposes needed win32 gdi functions.

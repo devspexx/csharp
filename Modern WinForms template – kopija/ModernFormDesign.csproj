@@ -77,6 +77,9 @@
     <Reference Include="Bunifu.UI.WinForms.BunifuImageButton">
       <HintPath>..\..\Desktop\Visual Studio\Bunifu UI WinForms 1.11.5.21 (1)\Bunifu.UI.WinForms.BunifuImageButton.dll</HintPath>
     </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuLabel">
+      <HintPath>..\Visual Studio\Bunifu UI WinForms 1.11.5.21 (1)\Bunifu.UI.WinForms.BunifuLabel.dll</HintPath>
+    </Reference>
     <Reference Include="Bunifu_UI_v1.5.3">
       <HintPath>..\..\Desktop\Visual Studio\Bunifu UI WinForms 1.11.5.21 (1)\Bunifu_UI_v1.5.3.dll</HintPath>
     </Reference>
@@ -96,25 +99,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dropshadow.cs">
+    <Compile Include="UI\Form Addons\Dropshadow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="UI\Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="UI\Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModernForm.cs">
+    <Compile Include="UI\Form Addons\ModernForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Native.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Classes\Native.cs" />
+    <Compile Include="Classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
+    <Compile Include="UI\UserControls\ui-components.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\ui-components.Designer.cs">
+      <DependentUpon>ui-components.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\main-front.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\main-front.Designer.cs">
+      <DependentUpon>main-front.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\Form Addons\Dropshadow.resx">
+      <DependentUpon>Dropshadow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModernForm.resx">
+    <EmbeddedResource Include="UI\Form Addons\ModernForm.resx">
       <DependentUpon>ModernForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -127,6 +151,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\UserControls\main-front.resx">
+      <DependentUpon>main-front.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\ui-components.resx">
+      <DependentUpon>ui-components.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
