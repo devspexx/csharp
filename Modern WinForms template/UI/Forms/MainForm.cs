@@ -1,4 +1,5 @@
 ﻿using FormEffects;
+using ModernFormDesign.UI;
 using ShadowDemo;
 using System;
 using System.Drawing;
@@ -11,8 +12,8 @@ namespace BorderlessForm
     {
         public void DecorationMouseDown(HitTestValues hit, Point p) {
             NativeMethods.ReleaseCapture();
-            var pt = new POINTS { X = (short)p.X, Y = (short)p.Y };
-            NativeMethods.SendMessage(Handle, (int)WindowMessages.WM_NCLBUTTONDOWN, (int)hit, pt);
+            var pt = new POINTS { X = (short) p.X, Y = (short) p.Y };
+            NativeMethods.SendMessage(Handle, (int) WindowMessages.WM_NCLBUTTONDOWN, (int) hit, pt);
         }
 
         public void DecorationMouseDown(HitTestValues hit) {
@@ -20,11 +21,16 @@ namespace BorderlessForm
         }
 
         protected static int MakeLong(short lowPart, short highPart) {
-            return (int)(((ushort)lowPart) | (uint)(highPart << 16));
+            return (int) (((ushort) lowPart) | (uint) (highPart << 16));
         }
 
         protected void ShowSystemMenu(MouseButtons buttons, Point pos) {
-            NativeMethods.SendMessage(Handle, (int)WindowMessages.WM_SYSMENU, 0, MakeLong((short)pos.X, (short)pos.Y));
+            NativeMethods.SendMessage(
+                Handle, 
+                (int) WindowMessages.WM_SYSMENU, 
+                0, 
+                MakeLong((short) pos.X, (short) pos.Y)
+            );
         }
 
         protected override void WndProc(ref Message m) {
@@ -32,7 +38,6 @@ namespace BorderlessForm
                 base.WndProc(ref m);
                 return;
             }
-
             switch (m.Msg) {
                 case (int)WindowMessages.WM_NCCALCSIZE: {
                     WmNCCalcSize(ref m);
@@ -66,12 +71,12 @@ namespace BorderlessForm
 
         private void SetWindowRegion(IntPtr hwnd, int left, int top, int right, int bottom) {
             var rgn = NativeMethods.CreateRectRgn(0, 0, 0, 0);
-            var hrg = new HandleRef((object)this, rgn);
+            var hrg = new HandleRef((object) this, rgn);
             var r = NativeMethods.GetWindowRgn(hwnd, hrg.Handle);
             RECT box;
             NativeMethods.GetRgnBox(hrg.Handle, out box);
             if (box.left != left || box.top != top || box.right != right || box.bottom != bottom) {
-                var hr = new HandleRef((object)this, NativeMethods.CreateRectRgn(left, top, right, bottom));
+                var hr = new HandleRef((object) this, NativeMethods.CreateRectRgn(left, top, right, bottom));
                 NativeMethods.SetWindowRgn(hwnd, hr.Handle, NativeMethods.IsWindowVisible(hwnd));
             }
             NativeMethods.DeleteObject(rgn);
@@ -80,13 +85,12 @@ namespace BorderlessForm
         public FormWindowState MinMaxState {
             get {
                 var s = NativeMethods.GetWindowLong(Handle, NativeConstants.GWL_STYLE);
-
-                var max = (s & (int)WindowStyle.WS_MAXIMIZE) > 0;
+                var max = (s & (int) WindowStyle.WS_MAXIMIZE) > 0;
                 if (max) {
                     return FormWindowState.Maximized;
                 }
 
-                var min = (s & (int)WindowStyle.WS_MINIMIZE) > 0;
+                var min = (s & (int) WindowStyle.WS_MINIMIZE) > 0;
                 if (min) {
                     return FormWindowState.Minimized;
                 }
@@ -98,13 +102,13 @@ namespace BorderlessForm
         private void WmWindowPosChanged(ref Message m) {
             DefWndProc(ref m);
             UpdateBounds();
-            var pos = (WINDOWPOS)Marshal.PtrToStructure(m.LParam, typeof(WINDOWPOS));
+            var pos = (WINDOWPOS) Marshal.PtrToStructure(m.LParam, typeof(WINDOWPOS));
             SetWindowRegion(m.HWnd, 0, 0, pos.cx, pos.cy);
             m.Result = NativeConstants.TRUE;
         }
 
         private void WmNCCalcSize(ref Message m) {
-            var r = (RECT)Marshal.PtrToStructure(m.LParam, typeof(RECT));
+            var r = (RECT) Marshal.PtrToStructure(m.LParam, typeof(RECT));
             var max = MinMaxState == FormWindowState.Maximized;
             if (max) {
                 var x = NativeMethods.GetSystemMetrics(NativeConstants.SM_CXSIZEFRAME);
@@ -122,11 +126,7 @@ namespace BorderlessForm
                 appBarData.cbSize = Marshal.SizeOf(typeof(APPBARDATA));
                 var autohide = (NativeMethods.SHAppBarMessage(NativeConstants.ABM_GETSTATE, ref appBarData) &
                     NativeConstants.ABS_AUTOHIDE) != 0;
-
-                if (autohide)
-                {
-                    r.bottom -= 1;
-                }
+                if (autohide) { r.bottom -= 1; }
                 Marshal.StructureToPtr(r, m.LParam, true);
             }
             m.Result = IntPtr.Zero;
@@ -149,6 +149,8 @@ namespace BorderlessForm
             }
         }
 
+        private DateTime titleClickTime = DateTime.MinValue;
+        private Point titleClickPosition = Point.Empty;
         private FormWindowState previousWindowState;
         public bool loaded = false;
         public bool formclosing = false;
@@ -167,9 +169,7 @@ namespace BorderlessForm
             BottomBorderPanel.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTBOTTOM);
             
             panel1.MouseDown += TitleLabel_MouseDown;
-            bunifuImageButton2.MouseDown += TitleLabel_MouseDown;
             panel3.MouseDown += TitleLabel_MouseDown;
-            panel2.MouseDown += TitleLabel_MouseDown;
             this.Shown += new EventHandler(MainForm_Shown);
             this.Resize += new EventHandler(MainForm_Resize);
             this.LocationChanged += new EventHandler(MainForm_Resize);
@@ -179,12 +179,8 @@ namespace BorderlessForm
             loaded = true;
         }
 
-        private DateTime titleClickTime = DateTime.MinValue;
-        private Point titleClickPosition = Point.Empty;
-
         private void MainForm_Load(object sender, EventArgs e) {
-            shadow = new Dropshadow(this)
-            {
+            shadow = new Dropshadow(this) {
                 ShadowBlur = 10,
                 ShadowSpread = -4,
                 ShadowColor = Color.FromArgb(30, 30, 30)
