@@ -35,6 +35,8 @@ namespace ShadowDemo
             Owner.Activated += (sender, args) => Owner.BringToFront();
         }
 
+        public Dropshadow() { }
+
         public Color ShadowColor {
             get { return _shadowColor; }
             set {
@@ -130,7 +132,7 @@ namespace ShadowDemo
                     g.FillRectangle(brush, blur, 0, solidW, blur);
 
                     // right
-                    // make sure parttern is currect
+                    // make sure pattern is currect
                     brush.ResetTransform();
                     brush.TranslateTransform(w % blur, h % blur);
 
@@ -179,7 +181,6 @@ namespace ShadowDemo
 
         public void UpdateLocation(Object sender = null, EventArgs eventArgs = null) {
             Point pos = Owner.Location;
-
             pos.Offset(OffsetX, OffsetY);
             Location = pos;
         }
@@ -262,7 +263,6 @@ namespace ShadowDemo
             // 
             // Dropshadow
             // 
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(59)))));
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.DoubleBuffered = true;
             this.Name = "Dropshadow";

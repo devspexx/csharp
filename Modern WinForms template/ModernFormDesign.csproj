@@ -71,6 +71,9 @@
     <Reference Include="Bunifu.UI.WinForms.BunifuButton">
       <HintPath>..\..\Desktop\Visual Studio\Bunifu UI WinForms 1.11.5.21 (1)\Bunifu.UI.WinForms.BunifuButton.dll</HintPath>
     </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuCheckBox">
+      <HintPath>..\Visual Studio\Knjiznjice\Bunifu UI WinForms 1.11.5.21\Bunifu.UI.WinForms.BunifuCheckBox.dll</HintPath>
+    </Reference>
     <Reference Include="Bunifu.UI.WinForms.BunifuFormDock">
       <HintPath>..\..\Desktop\Visual Studio\Bunifu UI WinForms 1.11.5.21 (1)\Bunifu.UI.WinForms.BunifuFormDock.dll</HintPath>
     </Reference>
@@ -120,18 +123,6 @@
     <Compile Include="UI\UserControls\ui-components.Designer.cs">
       <DependentUpon>ui-components.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\UserControls\main-front.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\UserControls\main-front.Designer.cs">
-      <DependentUpon>main-front.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\UserControls\UserControl1.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\UserControls\UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="UI\Form Addons\Dropshadow.resx">
       <DependentUpon>Dropshadow.cs</DependentUpon>
     </EmbeddedResource>
@@ -151,9 +142,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UI\UserControls\main-front.resx">
-      <DependentUpon>main-front.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\UserControls\ui-components.resx">
       <DependentUpon>ui-components.cs</DependentUpon>
     </EmbeddedResource>

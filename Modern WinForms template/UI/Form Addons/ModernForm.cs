@@ -114,7 +114,7 @@ namespace FormEffects
             if (max) {
                 var x = NativeMethods.GetSystemMetrics(NativeConstants.SM_CXSIZEFRAME);
                 var y = NativeMethods.GetSystemMetrics(NativeConstants.SM_CYSIZEFRAME);
-                var p = NativeMethods.GetSystemMetrics(NativeConstants.SM_CXPADDEDBORDER + 2);
+                var p = NativeMethods.GetSystemMetrics(NativeConstants.SM_CXPADDEDBORDER);
                 var w = x + p;
                 var h = y + p;
 
@@ -127,7 +127,6 @@ namespace FormEffects
                 appBarData.cbSize = Marshal.SizeOf(typeof(APPBARDATA));
                 var autohide = (NativeMethods.SHAppBarMessage(NativeConstants.ABM_GETSTATE, ref appBarData) & 
                     NativeConstants.ABS_AUTOHIDE) != 0;
-                
                 if (autohide) {
                     r.bottom -= 1;
                 }
@@ -159,8 +158,6 @@ namespace FormEffects
             this.ClientSize = new Size(284, 261);
             this.DoubleBuffered = true;
             this.Name = "ModernForm";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.ResumeLayout(false);
 
         }
