@@ -16,5 +16,10 @@ namespace ModernFormDesign.UI
         {
             InitializeComponent();
         }
+
+        private void ui_components_SizeChanged(object sender, EventArgs e)
+        {
+            panel4.Width = this.Width / 2;
+        }
     }
 }
