@@ -42,7 +42,7 @@
             this.bunifuImageButton1 = new Bunifu.Framework.UI.BunifuImageButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.ui_components1 = new ModernFormDesign.UI.ui_components();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.TopBorderPanel.SuspendLayout();
             this.BottomBorderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton1)).BeginInit();
@@ -82,7 +82,7 @@
             // 
             // BottomBorderPanel
             // 
-            this.BottomBorderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.BottomBorderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BottomBorderPanel.Controls.Add(this.panel15);
             this.BottomBorderPanel.Controls.Add(this.panel12);
             this.BottomBorderPanel.Cursor = System.Windows.Forms.Cursors.SizeNS;
@@ -137,13 +137,14 @@
             this.bunifuImageButton1.Dock = System.Windows.Forms.DockStyle.Right;
             this.bunifuImageButton1.Image = ((System.Drawing.Image)(resources.GetObject("bunifuImageButton1.Image")));
             this.bunifuImageButton1.ImageActive = null;
-            this.bunifuImageButton1.Location = new System.Drawing.Point(154, 0);
+            this.bunifuImageButton1.Location = new System.Drawing.Point(26, 0);
             this.bunifuImageButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuImageButton1.Name = "bunifuImageButton1";
             this.bunifuImageButton1.Size = new System.Drawing.Size(25, 25);
             this.bunifuImageButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.bunifuImageButton1.TabIndex = 17;
             this.bunifuImageButton1.TabStop = false;
+            this.DecorationToolTip.SetToolTip(this.bunifuImageButton1, "Close");
             this.bunifuImageButton1.Zoom = 0;
             this.bunifuImageButton1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.bunifuImageButton1_MouseClick);
             this.bunifuImageButton1.MouseLeave += new System.EventHandler(this.bunifuImageButton1_MouseLeave);
@@ -151,7 +152,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(1, 1);
@@ -164,20 +165,20 @@
             // 
             this.panel3.Controls.Add(this.bunifuImageButton1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(843, 0);
+            this.panel3.Location = new System.Drawing.Point(971, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(179, 25);
+            this.panel3.Size = new System.Drawing.Size(51, 25);
             this.panel3.TabIndex = 16;
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             // 
-            // ui_components1
+            // panel2
             // 
-            this.ui_components1.BackColor = System.Drawing.SystemColors.Control;
-            this.ui_components1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ui_components1.Location = new System.Drawing.Point(1, 26);
-            this.ui_components1.Name = "ui_components1";
-            this.ui_components1.Size = new System.Drawing.Size(1022, 552);
-            this.ui_components1.TabIndex = 13;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(1, 26);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1022, 552);
+            this.panel2.TabIndex = 13;
             // 
             // MainForm
             // 
@@ -185,7 +186,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.ClientSize = new System.Drawing.Size(1024, 588);
-            this.Controls.Add(this.ui_components1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RightBorderPanel);
             this.Controls.Add(this.LeftBorderPanel);
@@ -225,7 +226,7 @@
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Panel panel16;
-        private ModernFormDesign.UI.ui_components ui_components1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

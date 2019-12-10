@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace BorderlessForm
 {
-    public enum GetWindow_Cmd : uint
-    {
+    public enum GetWindow_Cmd : uint {
         GW_HWNDFIRST = 0,
         GW_HWNDLAST = 1,
         GW_HWNDNEXT = 2,
@@ -17,8 +13,7 @@ namespace BorderlessForm
         GW_ENABLEDPOPUP = 6
     }
 
-    public enum HitTestValues
-    {
+    public enum HitTestValues {
         HTERROR = -2,
         HTTRANSPARENT = -1,
         HTNOWHERE = 0,
@@ -45,8 +40,7 @@ namespace BorderlessForm
         HTHELP = 21
     }
 
-    public enum WindowMessages
-    {
+    public enum WindowMessages {
         WM_NULL = 0x0000,
         WM_CREATE = 0x0001,
         WM_DESTROY = 0x0002,
@@ -172,8 +166,7 @@ namespace BorderlessForm
         WM_PRINTCLIENT = 0x0318,
     }
 
-    public enum SystemCommands
-    {
+    public enum SystemCommands {
         SC_SIZE = 0xF000,
         SC_MOVE = 0xF010,
         SC_MINIMIZE = 0xF020,
@@ -199,34 +192,25 @@ namespace BorderlessForm
         SC_SEPARATOR = 0xF00F
     }
 
-    [StructLayout(LayoutKind.Sequential)]
-    public struct RECT
-    {
+    [StructLayout(LayoutKind.Sequential)] public struct RECT {
         public int left;
         public int top;
         public int right;
         public int bottom;
 
-        public RECT(int left, int top, int right, int bottom)
-        {
+        public RECT(int left, int top, int right, int bottom) {
             this.left = left;
             this.top = top;
             this.right = right;
             this.bottom = bottom;
         }
 
-        public static RECT FromXYWH(int x, int y, int width, int height)
-        {
-            return new RECT(x,
-                            y,
-                            x + width,
-                            y + height);
+        public static RECT FromXYWH(int x, int y, int width, int height) {
+            return new RECT(x, y, x + width, y + height);
         }
     }
 
-    [StructLayout(LayoutKind.Sequential)]
-    internal struct WINDOWPOS
-    {
+    [StructLayout(LayoutKind.Sequential)] internal struct WINDOWPOS {
         internal IntPtr hwnd;
         internal IntPtr hWndInsertAfter;
         internal int x;
@@ -236,16 +220,12 @@ namespace BorderlessForm
         internal uint flags;
     }
 
-    [StructLayout(LayoutKind.Sequential)]
-    public struct POINTS
-    {
+    [StructLayout(LayoutKind.Sequential)] public struct POINTS {
         public short X;
         public short Y;
     }
 
-    [Flags]
-    public enum WindowStyle
-    {
+    [Flags] public enum WindowStyle {
         WS_OVERLAPPED = 0x00000000,
         WS_POPUP = -2147483648, //0x80000000,
         WS_CHILD = 0x40000000,
@@ -276,9 +256,7 @@ namespace BorderlessForm
         WS_CHILDWINDOW = (WS_CHILD)
     }
 
-    [StructLayout(LayoutKind.Sequential)]
-    public struct NativeMessage
-    {
+    [StructLayout(LayoutKind.Sequential)] public struct NativeMessage {
         public IntPtr handle;
         public uint msg;
         public IntPtr wParam;
@@ -287,9 +265,7 @@ namespace BorderlessForm
         public System.Drawing.Point p;
     }
 
-    [StructLayout(LayoutKind.Sequential)]
-    public struct APPBARDATA
-    {
+    [StructLayout(LayoutKind.Sequential)] public struct APPBARDATA {
         public int cbSize; // initialize this field using: Marshal.SizeOf(typeof(APPBARDATA));
         public IntPtr hWnd;
         public uint uCallbackMessage;
@@ -298,83 +274,34 @@ namespace BorderlessForm
         public int lParam;
     }
 
-    public static class NativeMethods
-    {
-        [DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-
-        [DllImport("user32.dll")]
-        public static extern IntPtr SetCapture(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
-        public static extern IntPtr GetCapture();
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetForegroundWindow(IntPtr hWnd);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern IntPtr SetActiveWindow(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hwnd, int msg, int wparam, int lparam);
-
-        [DllImport("user32.dll")]
-        public static extern int PostMessage(IntPtr hwnd, int msg, int wparam, int lparam);
-
-        [DllImport("user32.dll")]
-        public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
-
-        [DllImport("user32.dll")]
-        public static extern int TrackPopupMenuEx(IntPtr hmenu, uint fuFlags, int x, int y,
+    public static class NativeMethods {
+        [DllImport("user32.dll")] public static extern bool ReleaseCapture();
+        [DllImport("user32.dll")] public static extern IntPtr SetCapture(IntPtr hWnd);
+        [DllImport("user32.dll")] public static extern IntPtr GetCapture();
+        [DllImport("user32.dll")] [return: MarshalAs(UnmanagedType.Bool)] public static extern bool SetForegroundWindow(IntPtr hWnd);
+        [DllImport("user32.dll", SetLastError = true)] public static extern IntPtr SetActiveWindow(IntPtr hWnd);
+        [DllImport("user32.dll")] public static extern int SendMessage(IntPtr hwnd, int msg, int wparam, int lparam);
+        [DllImport("user32.dll")] public static extern int PostMessage(IntPtr hwnd, int msg, int wparam, int lparam);
+        [DllImport("user32.dll")] public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+        [DllImport("user32.dll")] public static extern int TrackPopupMenuEx(IntPtr hmenu, uint fuFlags, int x, int y,
            IntPtr hwnd, IntPtr lptpm);
-
-        [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hwnd, int wMsg, IntPtr wParam, IntPtr lParam);
-
-        [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hwnd, int msg, int wparam, POINTS pos);
-
-        [DllImport("user32.dll")]
-        public static extern int PostMessage(IntPtr hwnd, int wMsg, IntPtr wParam, IntPtr lParam);
-
-        [DllImport("user32.dll")]
-        public static extern int PostMessage(IntPtr hwnd, int msg, int wparam, POINTS pos);
-
-        [DllImport("user32.dll")]
-        public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool IsWindowVisible(IntPtr hWnd);
-
-        [DllImport("gdi32.dll")]
-        public static extern IntPtr CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
-
-        [DllImport("user32.dll")]
-        public static extern int GetWindowRgn(IntPtr hWnd, IntPtr hRgn);
-
-        [DllImport("gdi32.dll")]
-        public static extern int GetRgnBox(IntPtr hrgn, out RECT lprc);
-
-        [DllImport("user32.dll")]
-        public static extern Int32 GetWindowLong(IntPtr hWnd, Int32 Offset);
-
-        [DllImport("user32.dll")]
-        public static extern int GetSystemMetrics(int smIndex);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className, string windowTitle);
-
-        [DllImport("shell32.dll")]
-        public static extern int SHAppBarMessage(uint dwMessage, [In] ref APPBARDATA pData);
-
-        [DllImport("gdi32.dll")]
-        public static extern bool DeleteObject(IntPtr hObj);
+        [DllImport("user32.dll")] public static extern int SendMessage(IntPtr hwnd, int wMsg, IntPtr wParam, IntPtr lParam);
+        [DllImport("user32.dll")] public static extern int SendMessage(IntPtr hwnd, int msg, int wparam, POINTS pos);
+        [DllImport("user32.dll")] public static extern int PostMessage(IntPtr hwnd, int wMsg, IntPtr wParam, IntPtr lParam);
+        [DllImport("user32.dll")] public static extern int PostMessage(IntPtr hwnd, int msg, int wparam, POINTS pos);
+        [DllImport("user32.dll")] public static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
+        [DllImport("user32.dll")] [return: MarshalAs(UnmanagedType.Bool)] public static extern bool IsWindowVisible(IntPtr hWnd);
+        [DllImport("gdi32.dll")] public static extern IntPtr CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
+        [DllImport("user32.dll")] public static extern int GetWindowRgn(IntPtr hWnd, IntPtr hRgn);
+        [DllImport("gdi32.dll")] public static extern int GetRgnBox(IntPtr hrgn, out RECT lprc);
+        [DllImport("user32.dll")] public static extern Int32 GetWindowLong(IntPtr hWnd, Int32 Offset);
+        [DllImport("user32.dll")] public static extern int GetSystemMetrics(int smIndex);
+        [DllImport("user32.dll", SetLastError = true)] public static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className, string windowTitle);
+        [DllImport("shell32.dll")] public static extern int SHAppBarMessage(uint dwMessage, [In] ref APPBARDATA pData);
+        [DllImport("gdi32.dll")] public static extern bool DeleteObject(IntPtr hObj);
     }
 
-    public static class NativeConstants
-    {
+    public static class NativeConstants {
         public const int SM_CXSIZEFRAME = 32;
         public const int SM_CYSIZEFRAME = 33;
         public const int SM_CXPADDEDBORDER = 92;

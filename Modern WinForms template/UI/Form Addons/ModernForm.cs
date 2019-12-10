@@ -115,8 +115,8 @@ namespace FormEffects
                 var x = NativeMethods.GetSystemMetrics(NativeConstants.SM_CXSIZEFRAME);
                 var y = NativeMethods.GetSystemMetrics(NativeConstants.SM_CYSIZEFRAME);
                 var p = NativeMethods.GetSystemMetrics(NativeConstants.SM_CXPADDEDBORDER);
-                var w = x + p;
-                var h = y + p;
+                var w = (x + p) - 5;
+                var h = (y + p) - 5;
 
                 r.left += w;
                 r.top += h + 1;
@@ -159,7 +159,6 @@ namespace FormEffects
             this.DoubleBuffered = true;
             this.Name = "ModernForm";
             this.ResumeLayout(false);
-
         }
     }
 }

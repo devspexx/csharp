@@ -10,7 +10,11 @@ namespace BorderlessForm
     {
         public void DecorationMouseDown(HitTestValues hit, Point p) {
             NativeMethods.ReleaseCapture();
-            var pt = new POINTS { X = (short) p.X, Y = (short) p.Y };
+            var pt = new POINTS {
+                X = (short)p.X,
+                Y = (short)p.Y
+            };
+
             NativeMethods.SendMessage(Handle, (int) WindowMessages.WM_NCLBUTTONDOWN, (int) hit, pt);
         }
 
@@ -23,12 +27,7 @@ namespace BorderlessForm
         }
 
         protected void ShowSystemMenu(MouseButtons buttons, Point pos) {
-            NativeMethods.SendMessage(
-                Handle, 
-                (int) WindowMessages.WM_SYSMENU, 
-                0, 
-                MakeLong((short) pos.X, (short) pos.Y)
-            );
+            NativeMethods.SendMessage(Handle, (int) WindowMessages.WM_SYSMENU, 0, MakeLong((short) pos.X, (short) pos.Y));
         }
 
         protected override void WndProc(ref Message m) {
@@ -71,6 +70,7 @@ namespace BorderlessForm
             var rgn = NativeMethods.CreateRectRgn(0, 0, 0, 0);
             var hrg = new HandleRef((object) this, rgn);
             var r = NativeMethods.GetWindowRgn(hwnd, hrg.Handle);
+            
             RECT box;
             NativeMethods.GetRgnBox(hrg.Handle, out box);
             if (box.left != left || box.top != top || box.right != right || box.bottom != bottom) {
@@ -84,7 +84,7 @@ namespace BorderlessForm
             get {
                 var s = NativeMethods.GetWindowLong(Handle, NativeConstants.GWL_STYLE);
                 var max = (s & (int) WindowStyle.WS_MAXIMIZE) > 0;
-                if (max) {
+                if (max) {  
                     return FormWindowState.Maximized;
                 }
 
@@ -116,9 +116,9 @@ namespace BorderlessForm
                 var h = y + p;
 
                 r.left += w;
-                r.top += h + 1;
+                r.top += h + 2;
                 r.right -= w;
-                r.bottom -= h;
+                r.bottom -= h - 1;
 
                 var appBarData = new APPBARDATA();
                 appBarData.cbSize = Marshal.SizeOf(typeof(APPBARDATA));
@@ -156,7 +156,6 @@ namespace BorderlessForm
 
         public MainForm() {
             InitializeComponent();
-
             panel17.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTTOPLEFT);
             panel16.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTTOPRIGHT);
             panel15.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTBOTTOMLEFT);
@@ -168,12 +167,14 @@ namespace BorderlessForm
             
             panel1.MouseDown += TitleLabel_MouseDown;
             panel3.MouseDown += TitleLabel_MouseDown;
+
             this.Shown += new EventHandler(MainForm_Shown);
             this.Resize += new EventHandler(MainForm_Resize);
             this.LocationChanged += new EventHandler(MainForm_Resize);
 
             previousWindowState = MinMaxState;
             SizeChanged += MainForm_SizeChanged;
+
             loaded = true;
         }
 
