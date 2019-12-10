@@ -111,14 +111,16 @@ namespace BorderlessForm
             if (max) {
                 var x = NativeMethods.GetSystemMetrics(NativeConstants.SM_CXSIZEFRAME);
                 var y = NativeMethods.GetSystemMetrics(NativeConstants.SM_CYSIZEFRAME);
-                var p = NativeMethods.GetSystemMetrics(NativeConstants.SM_CXPADDEDBORDER + 2);
+                var p = NativeMethods.GetSystemMetrics(NativeConstants.SM_CXPADDEDBORDER + 5);
                 var w = x + p;
                 var h = y + p;
 
                 r.left += w;
-                r.top += h + 2;
+                r.top += h + 3;
                 r.right -= w;
-                r.bottom -= h - 1;
+                r.bottom -= h - 7;
+
+                bunifuImageButton1.Size = new Size(31, 25);
 
                 var appBarData = new APPBARDATA();
                 appBarData.cbSize = Marshal.SizeOf(typeof(APPBARDATA));
@@ -126,6 +128,8 @@ namespace BorderlessForm
                     NativeConstants.ABS_AUTOHIDE) != 0;
                 if (autohide) { r.bottom -= 1; }
                 Marshal.StructureToPtr(r, m.LParam, true);
+            } else {
+                bunifuImageButton1.Size = new Size(25, 25);
             }
             m.Result = IntPtr.Zero;
         }
