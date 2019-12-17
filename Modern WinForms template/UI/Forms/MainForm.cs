@@ -111,7 +111,7 @@ namespace BorderlessForm
             if (max) {
                 var x = NativeMethods.GetSystemMetrics(NativeConstants.SM_CXSIZEFRAME);
                 var y = NativeMethods.GetSystemMetrics(NativeConstants.SM_CYSIZEFRAME);
-                var p = NativeMethods.GetSystemMetrics(NativeConstants.SM_CXPADDEDBORDER + 5);
+                var p = NativeMethods.GetSystemMetrics(NativeConstants.SM_CXPADDEDBORDER + 2);
                 var w = x + p;
                 var h = y + p;
 
@@ -120,7 +120,7 @@ namespace BorderlessForm
                 r.right -= w;
                 r.bottom -= h - 7;
 
-                bunifuImageButton1.Size = new Size(31, 25);
+                bunifuImageButton1.Size = new Size(32, 25);
 
                 var appBarData = new APPBARDATA();
                 appBarData.cbSize = Marshal.SizeOf(typeof(APPBARDATA));
@@ -184,9 +184,9 @@ namespace BorderlessForm
 
         private void MainForm_Load(object sender, EventArgs e) {
             shadow = new Dropshadow(this) {
-                ShadowBlur = 10,
-                ShadowSpread = -4,
-                ShadowColor = Color.FromArgb(30, 30, 30)
+                ShadowBlur = 9,
+                ShadowSpread = -5,
+                ShadowColor = Color.FromArgb(51, 51, 51)
             };
             shadow.RefreshShadow();
         }
@@ -274,14 +274,14 @@ namespace BorderlessForm
 
         private void MainForm_Activated(object sender, EventArgs e) {
             if (!formclosing) {
-                shadow.ShadowSpread = -3;
+                shadow.ShadowSpread = -4;
                 shadow.RefreshShadow();
             }
         }
 
         private void MainForm_Deactivate(object sender, EventArgs e) {
             if (!formclosing) {
-                shadow.ShadowSpread = -4;
+                shadow.ShadowSpread = -5;
                 shadow.RefreshShadow();
             }
         }

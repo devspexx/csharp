@@ -116,7 +116,7 @@ namespace ShadowDemo
 
             // fill background
             g.FillRectangle(new SolidBrush(color)
-                , blur, blur, width + spread * 2 + 1, height + spread * 2 + 1);
+                , blur, blur, width + spread, height + spread);
             // +1 to fill the gap
 
             if (blur > 0) {
@@ -148,7 +148,7 @@ namespace ShadowDemo
                 {
                     var gp = new GraphicsPath();
                     //gp.AddPie(0,0,blur*2,blur*2, 180, 90);
-                    gp.AddEllipse(0, 0, blur * 2, blur * 2);
+                    gp.AddEllipse(0, 0, blur *2 , blur * 2);
 
 
                     var pgb = new PathGradientBrush(gp);
@@ -217,7 +217,7 @@ namespace ShadowDemo
         /// <para>Changes the current bitmap with a custom opacity level.  Here is where all happens!</para>
         public void SetBitmap(Bitmap bitmap, byte opacity = 255) {
             if (bitmap.PixelFormat != PixelFormat.Format32bppArgb) {
-                throw new ApplicationException("The bitmap must be 32ppp with alpha-channel.");
+                return;
             }
 
             // The idea of this is very simple,

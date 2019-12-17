@@ -87,9 +87,9 @@
             this.BottomBorderPanel.Controls.Add(this.panel12);
             this.BottomBorderPanel.Cursor = System.Windows.Forms.Cursors.SizeNS;
             this.BottomBorderPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomBorderPanel.Location = new System.Drawing.Point(0, 578);
+            this.BottomBorderPanel.Location = new System.Drawing.Point(0, 582);
             this.BottomBorderPanel.Name = "BottomBorderPanel";
-            this.BottomBorderPanel.Size = new System.Drawing.Size(1024, 10);
+            this.BottomBorderPanel.Size = new System.Drawing.Size(1024, 6);
             this.BottomBorderPanel.TabIndex = 3;
             // 
             // panel15
@@ -98,7 +98,7 @@
             this.panel15.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel15.Location = new System.Drawing.Point(0, 0);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(12, 10);
+            this.panel15.Size = new System.Drawing.Size(12, 6);
             this.panel15.TabIndex = 20;
             // 
             // panel12
@@ -107,7 +107,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel12.Location = new System.Drawing.Point(1012, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(12, 10);
+            this.panel12.Size = new System.Drawing.Size(12, 6);
             this.panel12.TabIndex = 19;
             // 
             // LeftBorderPanel
@@ -117,7 +117,7 @@
             this.LeftBorderPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftBorderPanel.Location = new System.Drawing.Point(0, 1);
             this.LeftBorderPanel.Name = "LeftBorderPanel";
-            this.LeftBorderPanel.Size = new System.Drawing.Size(1, 577);
+            this.LeftBorderPanel.Size = new System.Drawing.Size(1, 581);
             this.LeftBorderPanel.TabIndex = 4;
             // 
             // RightBorderPanel
@@ -127,7 +127,7 @@
             this.RightBorderPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.RightBorderPanel.Location = new System.Drawing.Point(1023, 1);
             this.RightBorderPanel.Name = "RightBorderPanel";
-            this.RightBorderPanel.Size = new System.Drawing.Size(1, 577);
+            this.RightBorderPanel.Size = new System.Drawing.Size(1, 581);
             this.RightBorderPanel.TabIndex = 5;
             // 
             // bunifuImageButton1
@@ -177,7 +177,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(1, 26);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1022, 552);
+            this.panel2.Size = new System.Drawing.Size(1022, 556);
             this.panel2.TabIndex = 13;
             // 
             // MainForm
