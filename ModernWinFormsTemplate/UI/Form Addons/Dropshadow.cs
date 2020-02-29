@@ -37,57 +37,71 @@ namespace ShadowDemo
 
         public Dropshadow() { }
 
-        public Color ShadowColor {
+        public Color ShadowColor
+        {
             get { return _shadowColor; }
-            set {
+            set
+            {
                 _shadowColor = value;
                 _shadowOpacity = _shadowColor.A;
             }
         }
 
-        public Bitmap ShadowBitmap {
+        public Bitmap ShadowBitmap
+        {
             get { return _shadowBitmap; }
-            set {
+            set
+            {
                 _shadowBitmap = value;
                 SetBitmap(_shadowBitmap, ShadowOpacity);
             }
         }
 
-        public byte ShadowOpacity {
+        public byte ShadowOpacity
+        {
             get { return _shadowOpacity; }
-            set {
+            set
+            {
                 _shadowOpacity = value;
                 SetBitmap(ShadowBitmap, _shadowOpacity);
             }
         }
 
-        public int ShadowH {
+        public int ShadowH
+        {
             get { return _shadowH; }
-            set {
+            set
+            {
                 _shadowH = value;
                 RefreshShadow(false);
             }
         }
 
-        public int OffsetX {
+        public int OffsetX
+        {
             get { return ShadowH - (ShadowBlur + ShadowSpread); }
         }
 
-        public int OffsetY {
+        public int OffsetY
+        {
             get { return ShadowV - (ShadowBlur + ShadowSpread); }
         }
 
-        public new int Width {
+        public new int Width
+        {
             get { return Owner.Width + (ShadowSpread + ShadowBlur) * 2; }
         }
 
-        public new int Height {
+        public new int Height
+        {
             get { return Owner.Height + (ShadowSpread + ShadowBlur) * 2; }
         }
 
-        public int ShadowV {
+        public int ShadowV
+        {
             get { return _shadowV; }
-            set {
+            set
+            {
                 _shadowV = value;
                 RefreshShadow(false);
             }
@@ -96,15 +110,18 @@ namespace ShadowDemo
         public int ShadowBlur { get; set; }
         public int ShadowSpread { get; set; }
 
-        protected override CreateParams CreateParams {
-            get {
+        protected override CreateParams CreateParams
+        {
+            get
+            {
                 CreateParams cp = base.CreateParams;
                 cp.ExStyle |= 0x00080000; // This form has to have the WS_EX_LAYERED extended style
                 return cp;
             }
         }
 
-        public static Bitmap DrawShadowBitmap(int width, int height, int blur, int spread, Color color) {
+        public static Bitmap DrawShadowBitmap(int width, int height, int blur, int spread, Color color)
+        {
             int ex = blur + spread;
             int w = width + ex * 2;
             int h = height + ex * 2;
@@ -119,7 +136,8 @@ namespace ShadowDemo
                 , blur, blur, width + spread, height + spread);
             // +1 to fill the gap
 
-            if (blur > 0) {
+            if (blur > 0)
+            {
                 // four dir gradiant
                 {
                     // left
@@ -148,7 +166,7 @@ namespace ShadowDemo
                 {
                     var gp = new GraphicsPath();
                     //gp.AddPie(0,0,blur*2,blur*2, 180, 90);
-                    gp.AddEllipse(0, 0, blur *2 , blur * 2);
+                    gp.AddEllipse(0, 0, blur * 2, blur * 2);
 
 
                     var pgb = new PathGradientBrush(gp)
@@ -181,7 +199,8 @@ namespace ShadowDemo
             return bitmap;
         }
 
-        public void UpdateLocation(Object sender = null, EventArgs eventArgs = null) {
+        public void UpdateLocation(Object sender = null, EventArgs eventArgs = null)
+        {
             Point pos = Owner.Location;
             pos.Offset(OffsetX, OffsetY);
             Location = pos;
@@ -191,8 +210,10 @@ namespace ShadowDemo
         ///     Refresh shadow.
         /// </summary>
         /// <param name="redraw"> (optional) redraw the background bitmap. </param>
-        public void RefreshShadow(bool redraw = true) {
-            if (redraw) {
+        public void RefreshShadow(bool redraw = true)
+        {
+            if (redraw)
+            {
                 //ShadowBitmap = DrawShadow();
                 ShadowBitmap = DrawShadowBitmap(Owner.Width, Owner.Height, ShadowBlur, ShadowSpread, ShadowColor);
             }
@@ -201,12 +222,15 @@ namespace ShadowDemo
             UpdateLocation();
 
             //Region r = Region.FromHrgn(Win32.CreateRoundRectRgn(0, 0, Width, Height, BorderRadius, BorderRadius));
-            var r = new Region(new Rectangle(0, 0, Width+2, Height+2));
-            
+            var r = new Region(new Rectangle(0, 0, Width + 2, Height + 2));
+
             Region or;
-            if (Owner.Region == null) {
+            if (Owner.Region == null)
+            {
                 or = new Region(Owner.ClientRectangle);
-            } else {
+            }
+            else
+            {
                 or = Owner.Region.Clone();
             }
 
@@ -217,8 +241,10 @@ namespace ShadowDemo
         }
 
         /// <para>Changes the current bitmap with a custom opacity level.  Here is where all happens!</para>
-        public void SetBitmap(Bitmap bitmap, byte opacity = 255) {
-            if (bitmap.PixelFormat != PixelFormat.Format32bppArgb) {
+        public void SetBitmap(Bitmap bitmap, byte opacity = 255)
+        {
+            if (bitmap.PixelFormat != PixelFormat.Format32bppArgb)
+            {
                 return;
             }
 
@@ -232,7 +258,8 @@ namespace ShadowDemo
             IntPtr hBitmap = IntPtr.Zero;
             IntPtr oldBitmap = IntPtr.Zero;
 
-            try {
+            try
+            {
                 hBitmap = bitmap.GetHbitmap(Color.FromArgb(0)); // grab a GDI handle from this GDI+ bitmap
                 oldBitmap = Win32.SelectObject(memDc, hBitmap);
 
@@ -249,11 +276,14 @@ namespace ShadowDemo
 
                 Win32.UpdateLayeredWindow(Handle, screenDc, ref topPos, ref size, memDc, ref pointSource, 0, ref blend,
                     Win32.ULW_ALPHA);
-            } finally {
+            }
+            finally
+            {
                 Win32.ReleaseDC(IntPtr.Zero, screenDc);
-                if (hBitmap != IntPtr.Zero) {
+                if (hBitmap != IntPtr.Zero)
+                {
                     Win32.SelectObject(memDc, oldBitmap);
-                    
+
                     //Windows.DeleteObject(hBitmap); // The documentation says that we have to use the Windows.DeleteObject... but since there is no such method I use the normal DeleteObject from Win32 GDI and it's working fine without any resource leak.
                     Win32.DeleteObject(hBitmap);
                 }
@@ -265,7 +295,8 @@ namespace ShadowDemo
     // class that exposes needed win32 gdi functions.
     internal static class Win32
     {
-        public enum Bool {
+        public enum Bool
+        {
             False = 0,
             True
         };
@@ -276,7 +307,8 @@ namespace ShadowDemo
         public const byte AC_SRC_OVER = 0x00;
         public const byte AC_SRC_ALPHA = 0x01;
 
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")] public static extern IntPtr CreateRoundRectRgn (
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        public static extern IntPtr CreateRoundRectRgn(
             int nLeftRect, // x-coordinate of upper-left corner
             int nTopRect, // y-coordinate of upper-left corner
             int nRightRect, // x-coordinate of lower-right corner
@@ -304,7 +336,8 @@ namespace ShadowDemo
         /// </returns>
 
         [DllImport("user32.dll")] public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
-        [DllImport("user32.dll", ExactSpelling = true, SetLastError = true)] public static extern Bool UpdateLayeredWindow(IntPtr hwnd, IntPtr hdcDst, ref Point pptDst, ref Size psize,
+        [DllImport("user32.dll", ExactSpelling = true, SetLastError = true)]
+        public static extern Bool UpdateLayeredWindow(IntPtr hwnd, IntPtr hdcDst, ref Point pptDst, ref Size psize,
             IntPtr hdcSrc, ref Point pprSrc, Int32 crKey, ref BLENDFUNCTION pblend, Int32 dwFlags);
         [DllImport("user32.dll", ExactSpelling = true, SetLastError = true)] public static extern IntPtr GetDC(IntPtr hWnd);
         [DllImport("user32.dll", ExactSpelling = true)] public static extern int ReleaseDC(IntPtr hWnd, IntPtr hDC);
@@ -312,36 +345,46 @@ namespace ShadowDemo
         [DllImport("gdi32.dll", ExactSpelling = true, SetLastError = true)] public static extern Bool DeleteDC(IntPtr hdc);
         [DllImport("gdi32.dll", ExactSpelling = true)] public static extern IntPtr SelectObject(IntPtr hDC, IntPtr hObject);
         [DllImport("gdi32.dll", ExactSpelling = true, SetLastError = true)] public static extern Bool DeleteObject(IntPtr hObject);
-        
-        [StructLayout(LayoutKind.Sequential, Pack = 1)] private struct ARGB {
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        private struct ARGB
+        {
             public readonly byte Blue;
             public readonly byte Green;
             public readonly byte Red;
             public readonly byte Alpha;
         }
 
-        [StructLayout(LayoutKind.Sequential, Pack = 1)] public struct BLENDFUNCTION {
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct BLENDFUNCTION
+        {
             public byte BlendOp;
             public byte BlendFlags;
             public byte SourceConstantAlpha;
             public byte AlphaFormat;
         }
 
-        [StructLayout(LayoutKind.Sequential)] public struct Point {
+        [StructLayout(LayoutKind.Sequential)]
+        public struct Point
+        {
             public Int32 x;
             public Int32 y;
 
-            public Point(Int32 x, Int32 y) {
+            public Point(Int32 x, Int32 y)
+            {
                 this.x = x;
                 this.y = y;
             }
         }
 
-        [StructLayout(LayoutKind.Sequential)] public struct Size {
+        [StructLayout(LayoutKind.Sequential)]
+        public struct Size
+        {
             public Int32 cx;
             public Int32 cy;
 
-            public Size(Int32 cx, Int32 cy) {
+            public Size(Int32 cx, Int32 cy)
+            {
                 this.cx = cx;
                 this.cy = cy;
             }
