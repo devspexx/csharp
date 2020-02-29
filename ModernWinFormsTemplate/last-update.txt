@@ -1,0 +1,3 @@
+29.2.2020
+- fixed high cpu usage when resizing the form in any way
+- fixed border shadow that was not rendering normally when the app was maximized
