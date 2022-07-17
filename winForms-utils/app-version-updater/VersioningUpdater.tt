@@ -1,0 +1,17 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+
+using System.Reflection;
+
+[assembly: AssemblyVersion("<#= this.Major #>.<#= this.Minor #>.<#= this.DaysSinceProjectStarted #>.<#= this.MinutesSinceMidnight #>")]
+
+<#+
+
+	int Major = 1;
+	int Minor = 0;
+
+	public static DateTime ProjectStartedDate = new DateTime(day: 22, month: 6, year: 2022);
+	public int DaysSinceProjectStarted = (int)((DateTime.UtcNow - ProjectStartedDate).TotalDays);
+	public int MinutesSinceMidnight = (int)DateTime.UtcNow.TimeOfDay.TotalMinutes;
+
+#>

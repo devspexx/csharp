@@ -1,0 +1,3 @@
+https://www.googleapis.com/youtube/v3/channels?part=statistics&id={channel-id}&key={your-key}
+
+You can generate it here: https://developers.google.com/youtube/v3/getting-started
