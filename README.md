@@ -1,2 +1,2 @@
-# C-Sharp
-C# .NET classes | other files
+# csharp
+csharp util classes, .net classes
