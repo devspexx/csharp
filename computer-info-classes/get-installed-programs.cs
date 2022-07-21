@@ -1,5 +1,5 @@
--- with Registry
-
+// with Registry
+// using Microsoft.Win32;
 string uninstallKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
 using (RegistryKey rk = Registry.LocalMachine.OpenSubKey(uninstallKey))
 {
@@ -18,7 +18,8 @@ using (RegistryKey rk = Registry.LocalMachine.OpenSubKey(uninstallKey))
     }
 }
 
--- with WMI 
+// with WMI 
+// using System.Management;
 ManagementObjectSearcher mos = new ManagementObjectSearcher("SELECT * FROM Win32_Product");
 foreach (ManagementObject mo in mos.Get())
 {
