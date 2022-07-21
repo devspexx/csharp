@@ -1,3 +1,4 @@
 https://www.googleapis.com/youtube/v3/channels?part=statistics&id={channel-id}&key={your-key}
+extract only subscriberCount part: add param fields=items/statistics/subscriberCount
 
 You can generate it here: https://developers.google.com/youtube/v3/getting-started
