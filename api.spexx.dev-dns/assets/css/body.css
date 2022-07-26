@@ -1,0 +1,61 @@
+body {
+    font-family: 'Ruda';
+    margin: 0;
+}
+.home-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 40px 0;
+}
+article a {
+    display: block;
+    color: #5162C2;
+    font-size: 13px;
+    max-width: 120px;
+    margin: 30px auto 0 auto;
+    text-align: center;
+}
+.home-top a {
+    color: #5162C2;
+    padding-top: 7px;
+    font-size: 25px;
+    font-weight: 800;   
+    margin: 0;
+    text-decoration: none;
+    transition: 100ms;
+}
+article a:active,
+article a:hover,
+.home-top a:hover {
+    text-decoration: underline;
+    color: #3e4faf
+}
+.home-top img {
+    height: 40px;
+}
+table {
+    margin: 0 auto;
+    min-width: 800px;
+}
+.heading {
+    text-align: left;
+}
+tr,th,td {
+    padding: 5px;
+}
+tr td:nth-child(odd) {
+    background-color: rgba(230, 230, 230, 15%);
+}
+th {
+    font-size: 18px;
+    font-weight: 500;
+}
+table tr:nth-child(even) {
+    background-color: rgba(240, 240, 240, 50%);
+}
+img {
+    height: 20px;
+    vertical-align: -4px;
+    margin-right: 10px;
+}

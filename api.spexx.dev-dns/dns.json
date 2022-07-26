@@ -1,0 +1,170 @@
+{
+    "0": {
+        "COUNTRY": "si",
+        "COUNTRY-NAME": "sl-si",
+        "PROVIDER": "ARNES",
+        "HOSTNAME": "prestreljenik.arnes.si",
+        "IPv4": "193.2.1.66",
+        "IPv6": "2001:1470:8000::66"
+    },
+    "1": {
+        "COUNTRY": "si",
+        "COUNTRY-NAME": "sl-si",
+        "PROVIDER": "ARNES",
+        "HOSTNAME": "plesa.arnes.si",
+        "IPv4": "193.2.1.72",
+        "IPv6": "2001:1470:8000::72"
+    },
+    "2": {
+        "COUNTRY": "si",
+        "COUNTRY-NAME": "sl-si",
+        "PROVIDER": "SIOL (TELEKOM)",
+        "HOSTNAME": "taurus-3.siol.net",
+        "IPv4": "193.189.160.13",
+        "IPv6": ""
+    },
+    "3": {
+        "COUNTRY": "si",
+        "COUNTRY-NAME": "sl-si",
+        "PROVIDER": "SIOL (TELEKOM)",
+        "HOSTNAME": "taurus-4.siol.net",
+        "IPv4": "193.189.160.23",
+        "IPv6": ""
+    },
+    "4": {
+        "COUNTRY": "si",
+        "COUNTRY-NAME": "sl-si",
+        "PROVIDER": "T-2",
+        "HOSTNAME": "ns2.tusmobil.si",
+        "IPv4": "217.72.64.11",
+        "IPv6": ""
+    },
+    "5": {
+        "COUNTRY": "si",
+        "COUNTRY-NAME": "sl-si",
+        "PROVIDER": "AMIS",
+        "HOSTNAME": "sec.dns.amis.net",
+        "IPv4": "212.18.32.12",
+        "IPv6": ""
+    },
+    "6": {
+        "COUNTRY": "si",
+        "COUNTRY-NAME": "sl-si",
+        "PROVIDER": "TELEMACH",
+        "HOSTNAME": "ns2-cust.telemach.net",
+        "IPv4": "213.143.65.40",
+        "IPv6": ""
+    },
+    "7": {
+        "COUNTRY": "si",
+        "COUNTRY-NAME": "sl-si",
+        "PROVIDER": "KRS Networks",
+        "HOSTNAME": "cpe-19-5.customer.krs.net",
+        "IPv4": "109.123.19.5",
+        "IPv6": ""
+    },
+    "8": {
+        "COUNTRY": "si",
+        "COUNTRY-NAME": "sl-si",
+        "PROVIDER": "TELEMACH",
+        "HOSTNAME": "ns1.triera.net",
+        "IPv4": "213.161.0.10",
+        "IPv6": ""
+    },
+    "9": {
+        "COUNTRY": "si",
+        "COUNTRY-NAME": "sl-si",
+        "PROVIDER": "TELEMACH",
+        "HOSTNAME": "ns2.triera.net",
+        "IPv4": "213.161.0.20",
+        "IPv6": ""
+    },
+    "10": {
+        "COUNTRY": "si",
+        "COUNTRY-NAME": "sl-si",
+        "PROVIDER": "TELEMACH",
+        "HOSTNAME": "ns3.triera.net",
+        "IPv4": "209.51.158.194",
+        "IPv6": ""
+    },
+    "13": {
+        "COUNTRY": "en",
+        "COUNTRY-NAME": "en-us",
+        "PROVIDER": "OPENDNS",
+        "HOSTNAME": "dns.opendns.com",
+        "IPv4": "208.67.222.222",
+        "IPv6": "2620:119:35::35"
+    },
+    "14": {
+        "COUNTRY": "en",
+        "COUNTRY-NAME": "en-us",
+        "PROVIDER": "OPENDNS",
+        "HOSTNAME": "dns.umbrella.com",
+        "IPv4": "208.67.220.220",
+        "IPv6": "2620:119:53::53"
+    },
+    "15": {
+        "COUNTRY": "en",
+        "COUNTRY-NAME": "en-us",
+        "PROVIDER": "GOOGLE",
+        "HOSTNAME": "dns.google",
+        "IPv4": "8.8.8.8",
+        "IPv6": "2001:4860:4860::8888"
+    },
+    "16": {
+        "COUNTRY": "en",
+        "COUNTRY-NAME": "en-us",
+        "PROVIDER": "GOOGLE",
+        "HOSTNAME": "dns.google",
+        "IPv4": "8.8.4.4",
+        "IPv6": "2001:4860:4860::8844"
+    },
+    "17": {
+        "COUNTRY": "en",
+        "COUNTRY-NAME": "en-us",
+        "PROVIDER": "CLOUDFLARE",
+        "HOSTNAME": "one.one.one.one",
+        "IPv4": "1.1.1.1",
+        "IPv6": "2606:4700:4700::6400"
+    },
+    "18": {
+        "COUNTRY": "en",
+        "COUNTRY-NAME": "en-us",
+        "PROVIDER": "CLOUDFLARE",
+        "HOSTNAME": "one.one.one.one",
+        "IPv4": "1.0.0.1",
+        "IPv6": "2606:4700:4700::64"
+    },
+    "19": {
+        "COUNTRY": "en",
+        "COUNTRY-NAME": "en-us",
+        "PROVIDER": "Quad9",
+        "HOSTNAME": "dns9.quad9.net",
+        "IPv4": "9.9.9.9",
+        "IPv6": "2620:fe::fe"
+    },
+    "20": {
+        "COUNTRY": "en",
+        "COUNTRY-NAME": "en-us",
+        "PROVIDER": "Quad9",
+        "HOSTNAME": "rpz-public-resolver1.rrdns.pch.net",
+        "IPv4": "149.112.112.112",
+        "IPv6": "2620:fe::9"
+    },
+    "21": {
+        "COUNTRY": "en",
+        "COUNTRY-NAME": "en-us",
+        "PROVIDER": "Alternate DNS (ad block)",
+        "HOSTNAME": "dns.alternate-dns.com",
+        "IPv4": "76.76.19.19",
+        "IPv6": ""
+    },
+    "22": {
+        "COUNTRY": "en",
+        "COUNTRY-NAME": "en-us",
+        "PROVIDER": "Alternate DNS (ad block)",
+        "HOSTNAME": "76.223.122.150",
+        "IPv4": "76.223.122.150",
+        "IPv6": ""
+    }
+}
