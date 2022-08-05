@@ -133,7 +133,7 @@ namespace cleantempfiles
                     label2.Text = "error: " + dir;
                 }
                 refIntProgress++;
-                await Task.Delay(1);
+                await Task.Delay(10);
             }
 
             // remove files in recycle bin
