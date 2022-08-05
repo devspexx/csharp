@@ -1,3 +1,12 @@
+/*
+ * C:\Windows\Temp
+ * C:\Users\USERNAME\AppData\Local\Temp ; USERNAME = Environment.UserName
+ * C:\Temp - optional, some programs create it
+ * Delivery Optimization files: C:\Windows\SysWOW64\WindowsPowerShell\v1.0\Modules\DeliveryOptimization
+ * Recycle Bin - you can open it with shell like so: Process.Start("explorer.exe", "shell:RecycleBinFolder");
+ */
+
+
 // shell32 for trash bin 
 enum RecycleFlags : uint
 {
