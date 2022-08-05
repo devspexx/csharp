@@ -1,0 +1,11 @@
+D:\programming\visual-studio\workspace\cleantempfiles\cleantempfiles\bin\Debug\cleantempfiles.exe.config
+D:\programming\visual-studio\workspace\cleantempfiles\cleantempfiles\bin\Debug\cleantempfiles.exe
+D:\programming\visual-studio\workspace\cleantempfiles\cleantempfiles\bin\Debug\cleantempfiles.pdb
+D:\programming\visual-studio\workspace\cleantempfiles\cleantempfiles\obj\Debug\cleantempfiles.csproj.AssemblyReference.cache
+D:\programming\visual-studio\workspace\cleantempfiles\cleantempfiles\obj\Debug\cleantempfiles.csproj.SuggestedBindingRedirects.cache
+D:\programming\visual-studio\workspace\cleantempfiles\cleantempfiles\obj\Debug\cleantempfiles.Form1.resources
+D:\programming\visual-studio\workspace\cleantempfiles\cleantempfiles\obj\Debug\cleantempfiles.Properties.Resources.resources
+D:\programming\visual-studio\workspace\cleantempfiles\cleantempfiles\obj\Debug\cleantempfiles.csproj.GenerateResource.cache
+D:\programming\visual-studio\workspace\cleantempfiles\cleantempfiles\obj\Debug\cleantempfiles.csproj.CoreCompileInputs.cache
+D:\programming\visual-studio\workspace\cleantempfiles\cleantempfiles\obj\Debug\cleantempfiles.exe
+D:\programming\visual-studio\workspace\cleantempfiles\cleantempfiles\obj\Debug\cleantempfiles.pdb
