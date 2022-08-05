@@ -8,7 +8,7 @@
     <ProjectGuid>{044FB96A-7D49-4DFC-9318-DDFC76DF223A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>cleantempfiles</RootNamespace>
-    <AssemblyName>cleantempfiles</AssemblyName>
+    <AssemblyName>clean-temp-files-util-v2.0.0</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

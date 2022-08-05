@@ -94,9 +94,6 @@ D:\programming\visual-studio\workspace\cleantempfiles\cleantempfiles\bin\Debug\S
 D:\programming\visual-studio\workspace\cleantempfiles\cleantempfiles\obj\Debug\cleantempfiles.exe.licenses
 D:\programming\visual-studio\workspace\cleantempfiles\cleantempfiles\obj\Debug\cleantempfiles.csproj.Fody.CopyLocal.cache
 D:\programming\visual-studio\workspace\cleantempfiles\cleantempfiles\obj\Debug\cleantempfiles.csproj.CopyComplete
-D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\bin\Debug\cleantempfiles.exe.config
-D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\bin\Debug\cleantempfiles.exe
-D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\bin\Debug\cleantempfiles.pdb
 D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\bin\Debug\Bunifu.UI.WinForms.1.5.3.xml
 D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\bin\Debug\Microsoft.Win32.Registry.xml
 D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\bin\Debug\Microsoft.Win32.Registry.AccessControl.xml
@@ -134,10 +131,13 @@ D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\obj\
 D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\obj\Debug\cleantempfiles.Form1.resources
 D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\obj\Debug\cleantempfiles.Properties.Resources.resources
 D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\obj\Debug\cleantempfiles.csproj.GenerateResource.cache
-D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\obj\Debug\cleantempfiles.exe.licenses
 D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\obj\Debug\cleantempfiles.csproj.CoreCompileInputs.cache
 D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\obj\Debug\cleantempfiles.csproj.CopyComplete
-D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\obj\Debug\cleantempfiles.exe
-D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\obj\Debug\cleantempfiles.pdb
 D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\bin\Debug\System.Diagnostics.DiagnosticSource.xml
 D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\obj\Debug\cleantempfiles.csproj.Fody.CopyLocal.cache
+D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\bin\Debug\clean-temp-files-util-v2.0.0.exe.config
+D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\bin\Debug\clean-temp-files-util-v2.0.0.exe
+D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\bin\Debug\clean-temp-files-util-v2.0.0.pdb
+D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\obj\Debug\clean-temp-files-util-v2.0.0.exe.licenses
+D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\obj\Debug\clean-temp-files-util-v2.0.0.exe
+D:\programming\github\cloned\csharp\project-clean-temp-files\cleantempfiles\obj\Debug\clean-temp-files-util-v2.0.0.pdb
