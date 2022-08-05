@@ -15,10 +15,18 @@ namespace cleantempfiles
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
+        bool isInProcess = false;
+        int refIntProgress = 0;
+
+        List<string> dir_combinedall = new List<string>();
+        List<string> files1 = new List<string>();
+        List<string> files2 = new List<string>();
+        List<string> files3 = new List<string>();
+        List<string> files4 = new List<string>();
+        List<string> dir1 = new List<string>();
+        List<string> dir2 = new List<string>();
+        List<string> dir3 = new List<string>();
+        List<string> dir4 = new List<string>();
 
         enum RecycleFlags : uint
         {
@@ -26,115 +34,153 @@ namespace cleantempfiles
             SHERB_NOPROGRESSUI = 0x00000002,
             SHERB_NOSOUND = 0x00000004
         }
+
         [DllImport("Shell32.dll", CharSet = CharSet.Unicode)]
         static extern uint SHEmptyRecycleBin(IntPtr hwnd, string pszRootPath, RecycleFlags dwFlags);
 
-        private bool isProgressing = false;
-
-        private async void button1_Click(object sender, EventArgs e)
+        public Form1()
         {
-            if (isProgressing) return;
-            isProgressing = true;
-
-            string path = "C:/Users/" + Environment.UserName + "/AppData/Local/Temp";
-            string path2 = "C:/Windows/Temp";
-            string path3 = "C:/temp";
-
-            if (!Directory.Exists(path))
-            {
-                MessageBox.Show("%TEMP% does not exist:: " + path);
-                return;
-            }
-
-            List<string> dirs = new List<string>();
-            List<string> files = new List<string>();
-
-            foreach (string dir in Directory.GetDirectories(path, "*.*", SearchOption.AllDirectories))
-            {
-                dirs.Add(dir);
-                label1.Text = "found dir: " + dir;
-                foreach (string file in Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories))
-                {
-                    label1.Text = "found file: " + file;
-                    files.Add(file);
-                }
-                await Task.Delay(1);
-            }
-            foreach (string dir in Directory.GetDirectories(path2, "*.*", SearchOption.AllDirectories))
-            {
-                dirs.Add(dir);
-                label1.Text = "found dir: " + dir;
-                foreach (string file in Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories))
-                {
-                    label1.Text = "found file: " + file;
-                    files.Add(file);
-                }
-                await Task.Delay(1);
-            }
-            if (Directory.Exists("C:/temp"))
-            {
-                foreach (string dir in Directory.GetDirectories(path3, "*.*", SearchOption.AllDirectories))
-                {
-                    dirs.Add(dir);
-                    label1.Text = "found dir: " + dir;
-                    foreach (string file in Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories))
-                    {
-                        label1.Text = "found file: " + file;
-                        files.Add(file);
-                    }
-                    await Task.Delay(1);
-                }
-            }
-
-            await Task.Delay(1000);
-            label1.Text = "starting deletion in 3..";
-            await Task.Delay(1000);
-            label1.Text = "starting deletion in 2..";
-            await Task.Delay(1000);
-            label1.Text = "starting deletion in 1..";
-            await Task.Delay(1000);
-            label1.ForeColor = Color.IndianRed;
-            progressBar1.Maximum = dirs.Count;
-            foreach (string dir in dirs)
-            {
-                progressBar1.Value++;
-                label1.Text = "deleting: " + dir;
-                
-                try
-                {
-                    Directory.Delete(dir, true);
-                } catch (Exception) { }
-                await Task.Delay(1);
-                
-            }
-
-            // arg index 1 = If this value is an empty string or NULL, all Recycle Bins on all drives will be emptied.
-            // arg index 2 = don't show progress reports/confirmation windows
-            SHEmptyRecycleBin(Handle, null, RecycleFlags.SHERB_NOCONFIRMATION);
-
-            label1.Text = "deleted dirs: " + dirs.Count + ", files: " + files.Count;
-
-            Application.Restart();
+            InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            label3.Text = "C:/Users/" + Environment.UserName + "/AppData/Local/Temp";
+            label_dir2.Text = @"C:\Users\" + Environment.UserName + @"\AppData\Local\Temp";
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        // async to prevent application unexpected freezing
+        private async void bunifuButton2_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer", label4.Text);
+            if (isInProcess) return;
+            isInProcess = true;
+
+            foreach (string dir in Directory.GetDirectories(label_dir1.Text))
+            {
+                dir1.Add(dir);
+                foreach (string file in Directory.GetFiles(dir))
+                {
+                    files1.Add(file);
+                    label2.Text = file;
+                }
+                await Task.Delay(1);
+                label2.Text = dir;
+                dir_combinedall.Add(dir);
+            }
+            label1.Text = dir1.Count + "D" + files1.Count + "F";
+            
+            foreach (string dir in Directory.GetDirectories(label_dir2.Text))
+            {
+                dir2.Add(dir);
+                foreach (string file in Directory.GetFiles(dir))
+                {
+                    files2.Add(file);
+                    label2.Text = file;
+                }
+                await Task.Delay(1);
+                label2.Text = dir;
+                dir_combinedall.Add(dir);
+            }
+            label3.Text = dir2.Count + "D" + files2.Count + "F";
+            
+            if (Directory.Exists(label_dir3_opt.Text))
+            {
+                foreach (string dir in Directory.GetDirectories(label_dir3_opt.Text))
+                {
+                    dir3.Add(dir);
+                    foreach (string file in Directory.GetFiles(dir))
+                    {
+                        files3.Add(file);
+                        label2.Text = file;
+                    }
+                    await Task.Delay(1);
+                    label2.Text = dir;
+                    dir_combinedall.Add(dir);
+                }
+                label4.Text = dir3.Count + "D" + files3.Count + "F";
+            }
+                
+            foreach (string dir in Directory.GetDirectories(label_dir4.Text))
+            {
+                dir4.Add(dir);
+                foreach (string file in Directory.GetFiles(dir))
+                {
+                    files4.Add(file);
+                    label2.Text = file;
+                }
+                await Task.Delay(1);
+                label2.Text = dir;
+                dir_combinedall.Add(dir);
+            }
+            label5.Text = dir4.Count + "D" + files4.Count + "F";
+
+            for (int i = 5; i > 0; i--)
+            {
+                label2.Text = "scanning complete. starting deletion in " + i + " second(s)..";
+                await Task.Delay(1000);
+            }
+
+            bunifuProgressBar1.MaximumValue = dir_combinedall.Count;
+            bunifuProgressBar1.Value = 0;
+            timer1.Enabled = true;
+
+            foreach (string dir in dir_combinedall)
+            {
+                try
+                {
+                    Directory.Delete(dir, true);
+                    label2.Text = "removed: " + dir;
+                } catch {
+                    label2.Text = "error: " + dir;
+                }
+                refIntProgress++;
+                await Task.Delay(1);
+            }
+
+            // remove files in recycle bin
+            SHEmptyRecycleBin(Handle, null, RecycleFlags.SHERB_NOCONFIRMATION);
+
+            timer1.Enabled = false;
+            await Task.Delay(1000);
+
+            bunifuButton2.Enabled = true;
+            bunifuProgressBar1.ValueByTransition = 0;
+            label2.Text = "COMPLETED! Deleted " + dir_combinedall.Count + " directories.";
+            dir_combinedall.Clear();
+            dir1.Clear();
+            dir2.Clear();
+            dir3.Clear();
+            dir4.Clear();
+            files1.Clear();
+            files2.Clear();
+            files3.Clear();
+            files4.Clear();
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            Process.Start("explorer", label3.Text);
+            if (bunifuProgressBar1.Value != bunifuProgressBar1.MaximumValue)
+                bunifuProgressBar1.ValueByTransition += refIntProgress - bunifuProgressBar1.Value; 
         }
-
-        private void label2_Click(object sender, EventArgs e)
+        private void label_recyclebin_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer", label2.Text);
+            Process.Start("explorer.exe", "shell:RecycleBinFolder");
+        }
+        private void label_dir4_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", label_dir4.Text);
+        }
+        private void label_dir3_opt_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(label_dir3_opt.Text))
+                Process.Start("explorer.exe", label_dir3_opt.Text);
+        }
+        private void label_dir2_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", label_dir2.Text);
+        }
+        private void label_dir1_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", label_dir1.Text);
         }
     }
 }
