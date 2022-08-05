@@ -20,52 +20,42 @@ namespace QuickFix.Classes
 
         public static bool ListContainsString(List<string> list, string text) => list.Where(CheckString => CheckString.Contains(text)) != null ? true : false;
         
-        public bool ListContainsString(List<string> list, string text) {
-            if (list.Where(CheckString => CheckString.Contains(text)) != null) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+        public bool ListContainsString(List<string> list, string text) => list.Where(CheckString => CheckString.Contains(text)) != null;
 
         public List<string> ListAddStringsToList(List<string> list, string[] strings) {
-            for (int i = 0; i < strings.Length; i++) {
+            for (int i = 0; i < strings.Length; i++) 
                 list.Add(strings[i]);
-            }
             return list;
         }
 
         public List<string> ListRemoveStringsFromList(List<string> list, string[] strings) {
-            for (int i = 0; i < strings.Length; i++) {
+            for (int i = 0; i < strings.Length; i++) 
                 list.Remove(strings[i]);
-            }
             return list;
         }
 
         public static List<string> ListAddStringsToList(List<string> list, string[] strings) {
-            for (int i = 0; i < strings.Length; i++) {
+            for (int i = 0; i < strings.Length; i++) 
                 list.Add(strings[i]);
-            }
             return list;
         }
 
         public static List<string> ListRemoveStringsFromList(List<string> list, string[] strings) {
-            for (int i = 0; i < strings.Length; i++) {
+            for (int i = 0; i < strings.Length; i++) 
                 list.Remove(strings[i]);
-            }
             return list;
         }
 
         
-        public static string RandomChars(int dolzina) {
+        public static string RandomChars(int length) {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, dolzina)
+            return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        public static string RandomNums(int dolzina) {
+        public static string RandomNums(int length) {
             const string chars = "1234567890";
-            return new string(Enumerable.Repeat(chars, dolzina)
+            return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }

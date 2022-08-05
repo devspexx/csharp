@@ -13,34 +13,46 @@ namespace Test.Classes
 {
     public class AccountUtils
     {
-        public static int procents_upload;
-        
-        public static async Task<string[]> PrenesiDatotekoNaServer(string path, string uporabnik, bool profilnaSlika = false) {
+        //returns string[]
+        // [0] = a direct download url
+        // [1] = upload time took in ms
+        public static async Task<string[]> UploadFile(string path, string user, bool isAProfilePicture = false) {
+            
+            // start the stopwatch to keep track of the upload progress
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            
+            // ref variable for progress
+            int uploadPercentage = 0;
+            
             try {
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
-                var stream = File.Open(path, FileMode.Open);
-                if (!profilnaSlika) {
-                    var task = new FirebaseStorage(database_path)
-                        .Child(uporabnik)
-                        .Child(Path.GetFileName(path) + "|" + DateTime.Now.ToString("HH:mm:ss") + Path.GetExtension(path))
-                        .PutAsync(stream);
-                    task.Progress.ProgressChanged += (s, r) => procents_upload = r.Percentage;
-                    var downloadurl = await task;
-                    sw.Stop();
-                    return new string[] { downloadurl, sw.Elapsed.TotalMilliseconds.ToString() };
-                }
+                // store path of the file in var 
+                var uploadedFile = File.Open(path, FileMode.Open);
+                
+                // create a task that will upload a picture in user path: user.<user>.profilePicture.png
                 var task = new FirebaseStorage(database_path)
-                    .Child(uporabnik)
-                    .Child("profilePicture.png")
-                    .PutAsync(stream);
-                task.Progress.ProgressChanged += (s, r) => procents_upload = r.Percentage;
-                var downloadurl = await task;
+                    .Child(user)
+                    .Child(isAProfilePicture ? 
+                           Path.GetFileName(path) + "|" + DateTime.Now.ToString("HH:mm:ss") + Path.GetExtension(path) : 
+                           "profilePicture.png")
+                    .PutAsync(uploadedFile);
+                
+                // track progress percentage via public variable
+                task.Progress.ProgressChanged += (s, r) => uploadPercentage = r.Percentage;
+                
+                // gives a download url
+                var downloadurl = await task; 
+               
+                // stop the stopwatch
                 sw.Stop();
+                
+                // return data
                 return new string[] { downloadurl, sw.Elapsed.TotalMilliseconds.ToString() };
             }
-            catch (Exception) {
-                return null;
+            // return empty string if there's an exception thrown
+            catch {
+                sw.Stop();
+                return new string[] { };
             }
         }
     }

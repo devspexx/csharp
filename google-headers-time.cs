@@ -1,27 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QuickFix.Classes
+public async static Task<DateTime> GetCurrentTime()
 {
-    class GoogleTime
-    {
-        public async static Task<DateTime> GetCurrentTime() {
-            using (var client = new HttpClient()) {
-                try
-                {
-                    var result = await client.GetAsync("https://google.com",
-                          HttpCompletionOption.ResponseHeadersRead);
-                    return result.Headers.Date.Value.DateTime.AddHours(2); // add 2 hours of delay
-                }
-                catch {
-                    // if ethernet isnt available return the local configured time
-                    return DateTime.Now;
-                }
-            }
-        }
+    HttpClient httpClient = new HttpClient();
+    try {
+        var result = await httpClient.GetAsync("https://google.com",
+                  HttpCompletionOption.ResponseHeadersRead);
+
+        return result.Headers.Date.Value.DateTime;
+    } catch {
+
+        // if there's an exception return the local (system) time
+        return DateTime.Now;
     }
 }

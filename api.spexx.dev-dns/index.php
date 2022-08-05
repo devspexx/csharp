@@ -16,7 +16,7 @@
 
         <div class="home-top">
             <img src="//spexx.dev/assets/images/branding/favicon.ico" alt="favicon">
-            <a href="https://www.spexx.com/">DNS | spexx dev</a>
+            <a href="https://www.spexx.dev/">DNS | spexx dev</a>
         </div>
 
         <article>
