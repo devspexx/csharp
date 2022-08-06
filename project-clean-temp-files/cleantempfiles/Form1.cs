@@ -18,15 +18,8 @@ namespace cleantempfiles
         bool isInProcess = false;
         int refIntProgress = 0;
 
+        List<string> files_combinedall = new List<string>();
         List<string> dir_combinedall = new List<string>();
-        List<string> files1 = new List<string>();
-        List<string> files2 = new List<string>();
-        List<string> files3 = new List<string>();
-        List<string> files4 = new List<string>();
-        List<string> dir1 = new List<string>();
-        List<string> dir2 = new List<string>();
-        List<string> dir3 = new List<string>();
-        List<string> dir4 = new List<string>();
 
         enum RecycleFlags : uint
         {
@@ -34,7 +27,6 @@ namespace cleantempfiles
             SHERB_NOPROGRESSUI = 0x00000002,
             SHERB_NOSOUND = 0x00000004
         }
-
         [DllImport("Shell32.dll", CharSet = CharSet.Unicode)]
         static extern uint SHEmptyRecycleBin(IntPtr hwnd, string pszRootPath, RecycleFlags dwFlags);
 
@@ -45,7 +37,18 @@ namespace cleantempfiles
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            label_dir2.Text = @"C:\Users\" + Environment.UserName + @"\AppData\Local\Temp";
+            label_dir2.Text = label_dir2.Text.Replace("USERNAME", Environment.UserName);
+        }
+
+        enum labelstatus
+        {
+            FILE = 0,
+            DIR = 1
+        }
+        private void UpdateLabelStatus(string path, labelstatus TYPE, string prefix = "") {
+            string toRename = prefix + (TYPE == labelstatus.FILE ?
+                "file: " + path : "dir: " + path);
+            label2.Text = toRename.Length > 65 ? toRename.Substring(0, 65) + "..." : toRename;
         }
 
         // async to prevent application unexpected freezing
@@ -54,106 +57,108 @@ namespace cleantempfiles
             if (isInProcess) return;
             isInProcess = true;
 
-            foreach (string dir in Directory.GetDirectories(label_dir1.Text))
+            string[] directories =
             {
-                dir1.Add(dir);
-                foreach (string file in Directory.GetFiles(dir))
-                {
-                    files1.Add(file);
-                    label2.Text = file;
-                }
-                await Task.Delay(1);
-                label2.Text = dir;
-                dir_combinedall.Add(dir);
-            }
-            label1.Text = dir1.Count + "D" + files1.Count + "F";
-            
-            foreach (string dir in Directory.GetDirectories(label_dir2.Text))
+                label_dir1.Text,
+                label_dir2.Text,
+                label_dir3_opt.Text,
+                label_dir4.Text
+            };
+            Control[] directories_labelReference =
             {
-                dir2.Add(dir);
-                foreach (string file in Directory.GetFiles(dir))
-                {
-                    files2.Add(file);
-                    label2.Text = file;
-                }
-                await Task.Delay(1);
-                label2.Text = dir;
-                dir_combinedall.Add(dir);
-            }
-            label3.Text = dir2.Count + "D" + files2.Count + "F";
-            
-            if (Directory.Exists(label_dir3_opt.Text))
-            {
-                foreach (string dir in Directory.GetDirectories(label_dir3_opt.Text))
-                {
-                    dir3.Add(dir);
-                    foreach (string file in Directory.GetFiles(dir))
-                    {
-                        files3.Add(file);
-                        label2.Text = file;
-                    }
-                    await Task.Delay(1);
-                    label2.Text = dir;
-                    dir_combinedall.Add(dir);
-                }
-                label4.Text = dir3.Count + "D" + files3.Count + "F";
-            }
-                
-            foreach (string dir in Directory.GetDirectories(label_dir4.Text))
-            {
-                dir4.Add(dir);
-                foreach (string file in Directory.GetFiles(dir))
-                {
-                    files4.Add(file);
-                    label2.Text = file;
-                }
-                await Task.Delay(1);
-                label2.Text = dir;
-                dir_combinedall.Add(dir);
-            }
-            label5.Text = dir4.Count + "D" + files4.Count + "F";
+                label1,
+                label3,
+                label4,
+                label5
+            };
+            List<string> countReference = new List<string>();
+            int countReferenceInt = 0;
 
+            foreach (string directory in directories)
+            {
+                UpdateLabelStatus(directory, labelstatus.DIR, "x: ");
+
+                if (Directory.Exists(directory))
+                {
+                    List<string> directory_files = Directory.GetFiles(directory).ToList<string>();
+                    List<string> directory_subdirectories = Directory.GetDirectories(directory, "*.*", 
+                        SearchOption.AllDirectories).ToList<string>();
+
+                    // add optional items to global ref lists
+                    files_combinedall.AddRange(directory_files);
+                    dir_combinedall.AddRange(directory_subdirectories);
+
+                    foreach (string subdir in directory_subdirectories)
+                    {
+                        List<string> subdirectory_files = Directory.GetFiles(subdir).ToList<string>();
+                        files_combinedall.AddRange(subdirectory_files);
+
+                        // prevent app freezing
+                        UpdateLabelStatus(subdir, labelstatus.DIR);
+                        await Task.Delay(2);
+                    }
+
+                    // set for-reference values
+                    countReference.Add(directory_subdirectories.Count + "D" +
+                            directory_files.Count + "F");
+                }
+
+                directories_labelReference[countReferenceInt].Text = "found " + countReference[countReferenceInt];
+
+                await Task.Delay(1000);
+                countReferenceInt++;
+            }
+
+            // deletion countdown
             for (int i = 5; i > 0; i--)
             {
                 label2.Text = "scanning complete. starting deletion in " + i + " second(s)..";
                 await Task.Delay(1000);
             }
 
-            bunifuProgressBar1.MaximumValue = dir_combinedall.Count;
+            // re(set) values
+            bunifuProgressBar1.MaximumValue = files_combinedall.Count + dir_combinedall.Count;
             bunifuProgressBar1.Value = 0;
             timer1.Enabled = true;
 
+            foreach (string file in files_combinedall)
+            {
+                try
+                {
+                    File.Delete(file);
+                    UpdateLabelStatus(file, labelstatus.FILE, "removed ");
+                } catch {
+                    UpdateLabelStatus(file, labelstatus.FILE, "error ");
+                }
+                refIntProgress++;
+                await Task.Delay(20);
+            }
             foreach (string dir in dir_combinedall)
             {
                 try
                 {
                     Directory.Delete(dir, true);
-                    label2.Text = "removed: " + dir;
-                } catch {
-                    label2.Text = "error: " + dir;
+                    UpdateLabelStatus(dir, labelstatus.DIR, "removed ");
+                }
+                catch
+                {
+                    UpdateLabelStatus(dir, labelstatus.DIR, "error ");
                 }
                 refIntProgress++;
-                await Task.Delay(10);
+                await Task.Delay(20);
             }
 
             // remove files in recycle bin
-            SHEmptyRecycleBin(Handle, null, RecycleFlags.SHERB_NOCONFIRMATION);
+            SHEmptyRecycleBin(Handle, null, RecycleFlags.SHERB_NOCONFIRMATION | RecycleFlags.SHERB_NOPROGRESSUI);
 
             timer1.Enabled = false;
             await Task.Delay(1000);
 
-            bunifuButton2.Enabled = true;
-            bunifuProgressBar1.ValueByTransition = 0;
-            label2.Text = "COMPLETED! Deleted " + dir_combinedall.Count + " directories.";
+            label2.Text = "COMPLETED! Deleted " + files_combinedall.Count + "F and " + 
+                dir_combinedall.Count + "D";
+
+            files_combinedall.Clear();
             dir_combinedall.Clear();
-            dir1.Clear();
-            dir2.Clear();
-            dir3.Clear();
-            dir4.Clear();
-            files1.Clear();
-            files2.Clear();
-            files3.Clear();
-            files4.Clear();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
